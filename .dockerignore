@@ -3,3 +3,4 @@ Dockerfile
 .git
 ._*
 .DS_Store
+Thumbs.db
