@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: story-deployment
 spec: 
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: story
@@ -16,3 +16,12 @@ spec:
         - name: story
           image: amirjfr/kub-data-demo
           imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          # emptyDir: {}  # Pod-specific, erased when pod is deleted
+          hostPath: # Shared across pods on the **same node**
+            path: /data # Path on the host machine (e.g., Minikube VM)
+            type: DirectoryOrCreate # Creates directory if it doesn't exist
