@@ -15,3 +15,4 @@ spec:
       containers:
         - name: story
           image: amirjfr/kub-data-demo
+          imagePullPolicy: Always

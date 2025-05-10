@@ -32,8 +32,9 @@ app.post('/story', (req, res) => {
   });
 });
 
-app.get('/error', ()=>{
-  process.exit(1)
-})
+app.get('/error', (req, res) => {
+  res.status(500).send('Simulated crash.');
+  process.exit(1);
+});
 
 app.listen(3000);
