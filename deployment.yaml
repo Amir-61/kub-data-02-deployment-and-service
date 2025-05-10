@@ -16,6 +16,9 @@ spec:
         - name: story
           image: amirjfr/kub-data-demo
           imagePullPolicy: Always
+          env: # note you could achive the same in docker but we are doing it in k8s deployment this time
+            - name: STORY_FOLDER
+              value: 'story'
           volumeMounts:
             - mountPath: /app/story
               name: story-volume
