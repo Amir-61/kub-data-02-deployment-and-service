@@ -21,7 +21,13 @@ spec:
               name: story-volume
       volumes:
         - name: story-volume
+          # approach 1:
           # emptyDir: {}  # Pod-specific, erased when pod is deleted
-          hostPath: # Shared across pods on the **same node**
-            path: /data # Path on the host machine (e.g., Minikube VM)
-            type: DirectoryOrCreate # Creates directory if it doesn't exist
+          # approach 2:
+          # hostPath: # Shared across pods on the **same node**
+          #   path: /data # Path on the host machine (e.g., Minikube VM)
+          #   type: DirectoryOrCreate # Creates directory if it doesn't exist
+          # approach 3 (Persistent accross all nodes -  independent from pod and node - the best approach)
+          persistentVolumeClaim:
+            claimName: mypvc
+          
